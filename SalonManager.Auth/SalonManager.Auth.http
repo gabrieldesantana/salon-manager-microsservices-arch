@@ -1,0 +1,6 @@
+@SalonManager.Auth_HostAddress = http://localhost:5151
+
+GET {{SalonManager.Auth_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

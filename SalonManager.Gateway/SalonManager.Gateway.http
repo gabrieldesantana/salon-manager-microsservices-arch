@@ -1,0 +1,6 @@
+@SalonManager.Gateway_HostAddress = http://localhost:5125
+
+GET {{SalonManager.Gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

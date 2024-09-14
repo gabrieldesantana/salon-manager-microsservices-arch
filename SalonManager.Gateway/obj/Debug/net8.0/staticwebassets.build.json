@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "62kX0nAiXcY3jsTx2+Y41Izq5asngHrd25tqaVwsy6A=",
+  "Source": "SalonManager.Gateway",
+  "BasePath": "_content/SalonManager.Gateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

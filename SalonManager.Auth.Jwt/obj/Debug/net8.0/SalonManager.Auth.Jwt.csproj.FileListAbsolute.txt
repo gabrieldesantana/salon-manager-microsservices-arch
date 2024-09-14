@@ -1,0 +1,11 @@
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\bin\Debug\net8.0\SalonManager.Auth.Jwt.deps.json
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\bin\Debug\net8.0\SalonManager.Auth.Jwt.dll
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\bin\Debug\net8.0\SalonManager.Auth.Jwt.pdb
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\SalonManager.Auth.Jwt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\SalonManager.Auth.Jwt.AssemblyInfoInputs.cache
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\SalonManager.Auth.Jwt.AssemblyInfo.cs
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\SalonManager.Auth.Jwt.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\SalonManager.Auth.Jwt.dll
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\refint\SalonManager.Auth.Jwt.dll
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\SalonManager.Auth.Jwt.pdb
+C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\SalonManager.Auth.Jwt\obj\Debug\net8.0\ref\SalonManager.Auth.Jwt.dll
