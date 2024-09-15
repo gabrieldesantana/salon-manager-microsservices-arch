@@ -10,7 +10,7 @@ namespace SalonManager.Customers.Infrastructure.Refit
         [Headers("Content-type: application/json")]
         Task<IApiResponse<InsertUserResponse>> InsertUserAsync([Body] InsertUserRequest request);
 
-        [Get("/api/Users/")]
+        [Put("/api/Users/")]
         Task<IApiResponse<InsertUserResponse>> GetUsersAsync([Query] int pageNumber, [Query] int pageSize);
     }
 }

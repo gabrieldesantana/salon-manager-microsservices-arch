@@ -1,4 +1,5 @@
 ﻿using SalonManager.Appointments.Core.Enums;
+using SalonManager.Appointments.CrossCutting.Dtos;
 
 namespace SalonManager.Appointments.Core.Entities
 {
@@ -39,9 +40,9 @@ namespace SalonManager.Appointments.Core.Entities
         public bool Finished { get; private set; }
         public DateTime? FinishedDate { get; private set; }
 
-        public Employee? EmployeeAppointment { get; set; }
-        public Customer? CustomerAppointment { get; set; }
-        public SalonService? ServiceAppointment { get; set; }
+        public EmployeeDto? EmployeeAppointment { get; set; }
+        public CustomerDto? CustomerAppointment { get; set; }
+        public SalonServiceDto? ServiceAppointment { get; set; }
 
         public void Update(DateTime appointmentDate, string? details)
         {

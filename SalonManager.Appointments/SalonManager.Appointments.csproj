@@ -28,11 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Interfaces\" />
-    <Folder Include="Core\Validations\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Features\" />
-    <Folder Include="Infrastructure\" />
+    <Folder Include="Core\Interfaces\Services\" />
   </ItemGroup>
 
 </Project>

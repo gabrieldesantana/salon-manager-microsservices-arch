@@ -3,12 +3,8 @@ using SalonManager.Customers.CrossCutting.Enums;
 
 namespace SalonManager.Customers.CrossCutting.Dtos
 {
-    public class AppointmentDto : BaseEntity
+    public class AppointmentDto
     {
-        protected AppointmentDto()
-        {
-        }
-
         public AppointmentDto(Guid customerAppointmentId, Guid serviceAppointmentId, Guid employeeAppointmentId,
             Guid userCreatorId, Guid tenantId, string details, DateTime appointmentDate)
         {
@@ -43,5 +39,17 @@ namespace SalonManager.Customers.CrossCutting.Dtos
         ////public Employee? EmployeeAppointment { get; set; }
         public Customer? CustomerAppointment { get; set; }
         ////public SalonService? ServiceAppointment { get; set; }
+
+        #region BaseEntity
+        public Guid Id { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public Guid TenantId { get; set; }
+        public Guid UserCreatorId { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
+        public bool IsActived { get; set; }
+
+        #endregion  
     }
 }

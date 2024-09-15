@@ -1,9 +1,8 @@
-﻿using SalonManager.Customers.Core.Entities;
-using SalonManager.Customers.CrossCutting.Enums;
+﻿using SalonManager.Customers.CrossCutting.Enums;
 
 namespace SalonManager.Customers.CrossCutting.Dtos
 {
-    public class UserDto : BaseEntity
+    public class UserDto
     {
         public UserDto(string? fullName, string? login, string? email,
             string? password, EUserRole role)
@@ -25,5 +24,17 @@ namespace SalonManager.Customers.CrossCutting.Dtos
 
         public bool InUse { get; private set; }
         public string InUseBy { get; private set; }
+
+        #region BaseEntity
+        public Guid Id { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public Guid TenantId { get; set; }
+        public Guid UserCreatorId { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
+        public bool IsActived { get; set; }
+
+        #endregion  
     }
 }

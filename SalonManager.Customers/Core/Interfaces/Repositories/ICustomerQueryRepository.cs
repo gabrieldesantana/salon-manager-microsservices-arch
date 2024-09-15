@@ -6,6 +6,5 @@ namespace SalonManager.Customers.Core.Interfaces.Repositories
     {
         Task<List<Customer>> GetAllAsync(Guid tenantId, int pageNumber, int pageSize);
         Task<Customer> GetByIdAsync(Guid id, Guid tenantId);
-        Task<Customer> GetByIdCleanAsync(Guid id, Guid tenantId);
     }
 }

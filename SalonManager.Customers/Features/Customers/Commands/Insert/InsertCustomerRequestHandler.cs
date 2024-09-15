@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation;
 using MediatR;
+using Refit;
 using SalonManager.Customers.Core.Entities;
 using SalonManager.Customers.Core.Interfaces.Repositories;
 using SalonManager.Customers.Core.Interfaces.Services;
@@ -42,14 +43,11 @@ namespace SalonManager.Customers.Features.Customers.Commands.Insert
                 EUserRole.Customer
                 );
 
-            ////var users = await _userServiceRefit.GetUsersAsync(1,100);
-            ////Console.WriteLine(users.IsSuccessStatusCode);
-
             var requestUser = new InsertUserRequest(newUserToCustomer.FullName, newUserToCustomer.Login, newUserToCustomer.Email, newUserToCustomer.Password, (int)newUserToCustomer.Role);
             var resultCreateUser = await _userServiceRefit.InsertUserAsync(requestUser);
 
             if (!resultCreateUser.IsSuccessStatusCode || resultCreateUser.Content == null)
-                return Result.Fail<InsertCustomerResponse>($"{nameof(BadRequestException)}|Nao foi possivel inserir o usuario do cliente");
+                return Result.Fail<InsertCustomerResponse>($"{nameof(ApiException)}|Nao foi possivel inserir o usuario vinculado ao cliente");
 
             Customer customer = new(
                 request.TenantId,
@@ -67,10 +65,6 @@ namespace SalonManager.Customers.Features.Customers.Commands.Insert
 
             if (resultCreateCustomer == null)
                 return Result.Fail<InsertCustomerResponse>($"{nameof(BadRequestException)}|Nao foi possivel inserir o cliente");
-
-            ////resultCreateUser.ActivateUser(resultCreateCustomer.FullName);
-
-            ////await _userCommandRepository.SaveChangesAsync();
 
             InsertCustomerResponse insertCustomerResponse = resultCreateCustomer;
             return Result.Ok(insertCustomerResponse);

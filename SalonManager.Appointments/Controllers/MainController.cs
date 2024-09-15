@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentResults;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Refit;
+using SalonManager.Customers.CrossCutting.Exceptions;
 
 namespace SalonManager.Appointments.Controllers
 {

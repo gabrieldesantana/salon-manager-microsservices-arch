@@ -61,54 +61,6 @@ namespace SalonManager.Customers.Infrastructure.Repositories
                     parameters,
                     transaction: _dbSession.Transaction);
 
-                //var customerDictionary = new Dictionary<Guid, Customer>();
-
-                //var records = await _dbSession.Connection.QueryAsync<Customer, AppointmentDto, Customer>(
-                //    query,
-                //    (customer, appointment) =>
-                //    {
-
-                //        if (!customerDictionary.TryGetValue(customer.Id, out var customerEntry))
-                //        {
-                //            customerEntry = customer;
-                //            customerDictionary.Add(customer.Id, customerEntry);
-                //        }
-
-                //        customerEntry.Appointments.Add(appointment);
-                //        return customerEntry;
-                //    },
-                //    parameters,
-                //    splitOn: "Id",
-                //    transaction: _dbSession.Transaction);
-
-                return record;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message, ex);
-            }
-        }
-
-        public async Task<Customer> GetByIdCleanAsync(Guid id, Guid tenantId)
-        {
-            try
-            {
-                string query = """
-                    SELECT c.*
-                    FROM "Customers" c
-                    WHERE c."IsActived" = True 
-                    AND c."Id" = @Id
-                    AND c."TenantId" = @TenantId
-                    """;
-
-                var parameters = new { Id = id, TenantId = tenantId };
-
-                var record = await _dbSession.Connection.QueryFirstAsync<Customer>(
-                    query,
-                    parameters,
-                    transaction: _dbSession.Transaction);
-
                 return record;
             }
             catch (Exception ex)

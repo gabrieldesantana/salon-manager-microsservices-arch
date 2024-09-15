@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SalonManager.Customers.CrossCutting.Models;
 using SalonManager.Customers.Features.Customers.Commands.Delete;
+using SalonManager.Customers.Features.Customers.Commands.IncreaseVisitedTimes;
 using SalonManager.Customers.Features.Customers.Commands.Insert;
 using SalonManager.Customers.Features.Customers.Commands.Update;
 using SalonManager.Customers.Features.Customers.Queries.Select;
@@ -47,5 +48,10 @@ namespace SalonManager.Customers.Controllers
         public async Task<ActionResult<DeleteCustomerResponse>> Delete(
             [FromRoute] Guid tenantId, [FromRoute] Guid id, CancellationToken cancellationToken)
             => await SendRequest(new DeleteCustomerRequest(id, tenantId), cancellationToken);
+
+        [HttpPut("increase-visited-times")]
+        public async Task<ActionResult<IncreaseVisitedTimesResponse>> UpdateStatus(
+        [FromBody] IncreaseVisitedTimesRequest request, CancellationToken cancellationToken)
+        => await SendRequest(request, cancellationToken);
     }
 }
