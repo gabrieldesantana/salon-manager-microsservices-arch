@@ -19,7 +19,7 @@ namespace SalonManager.Auth.Controllers
         {
         }
 
-        ////[Authorize(Roles = "Admin")]/
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<SelectUserResponse>> Select(
             [FromRoute] Guid id,

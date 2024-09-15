@@ -25,7 +25,9 @@ namespace SalonManager.Auth.Features.Users.Commands.Update
 
             user.Update(request.FullName!, request.Login!, request.Email!);
 
-            await _commandRepository.UpdateAsync(user, request.Id);
+            var result = await _commandRepository.UpdateAsync(user, request.Id);
+            if (result == null)
+                return Result.Fail<UpdateUserResponse>($"{nameof(BadRequestException)}|Houve um erro ao persistir a alteração no banco de dados");
 
             UpdateUserResponse updateUserResponse = user;
             return Result.Ok(updateUserResponse);
