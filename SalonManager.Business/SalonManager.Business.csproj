@@ -31,14 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Entities\" />
-    <Folder Include="Core\Enums\" />
-    <Folder Include="Core\Interfaces\" />
-    <Folder Include="Core\Validations\" />
-    <Folder Include="CrossCutting\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Features\" />
-    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Auth\" />
   </ItemGroup>
 
 </Project>

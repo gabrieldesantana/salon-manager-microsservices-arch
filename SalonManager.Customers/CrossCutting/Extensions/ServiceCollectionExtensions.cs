@@ -22,12 +22,21 @@ namespace SalonManager.Customers.CrossCutting.Extensions
 
         public static void AddRefit(this IServiceCollection services, IConfiguration configuration)
         {
-            var host = configuration["Servicos:Users:Url"];
+            var hostUserService = configuration["Servicos:Users:Url"];
 
             services.AddRefitClient<IUserServiceRefit>().ConfigureHttpClient(c =>
             {
 
-                c.BaseAddress = new Uri(host);
+                c.BaseAddress = new Uri(hostUserService);
+                c.DefaultRequestHeaders.UserAgent.ParseAdd("SalonManager.Customers.Api");
+            });
+
+            var hostAppointmentService = configuration["Servicos:Appointments:Url"];
+
+            services.AddRefitClient<IAppointmentServiceRefit>().ConfigureHttpClient(c =>
+            {
+
+                c.BaseAddress = new Uri(hostAppointmentService!);
                 c.DefaultRequestHeaders.UserAgent.ParseAdd("SalonManager.Customers.Api");
             });
         }

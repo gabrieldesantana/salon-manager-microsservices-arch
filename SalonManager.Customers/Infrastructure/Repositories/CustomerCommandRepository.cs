@@ -34,9 +34,9 @@ namespace SalonManager.Customers.Infrastructure.Repositories
             return (result) ? entity : null;
         }
 
-        public async Task<Customer> UpdateAsync(Customer entity, Guid tenantId)
+        public async Task<Customer> UpdateAsync(Customer entity, Guid id)
         {
-            var result = await GetByIdAsync(entity.Id, entity.TenantId);
+            var result = await GetByIdWithoutTenantIdAsync(id);
 
             if (result == null) return null;
 

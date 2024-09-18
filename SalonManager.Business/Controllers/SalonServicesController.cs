@@ -4,11 +4,11 @@ namespace SalonManager.Business.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CompaniesController : ControllerBase
+    public class SalonServicesController : ControllerBase
     {
-        private readonly ILogger<CompaniesController> _logger;
+        private readonly ILogger<SalonServicesController> _logger;
 
-        public CompaniesController(ILogger<CompaniesController> logger)
+        public SalonServicesController(ILogger<SalonServicesController> logger)
         {
             _logger = logger;
         }

@@ -31,7 +31,7 @@ namespace SalonManager.Customers.Features.Customers.Commands.Update
                 request.BirthDate, request.PhoneNumber
                 );
 
-            var result = await _commandRepository.UpdateAsync(customer, request.TenantId);
+            var result = await _commandRepository.UpdateAsync(customer, request.Id);
             if (result == null)
                 return Result.Fail<UpdateCustomerResponse>($"{nameof(BadRequestException)}|Houve um erro ao persistir a alteração no banco de dados");
 

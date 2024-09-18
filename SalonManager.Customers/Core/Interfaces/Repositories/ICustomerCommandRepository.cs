@@ -5,7 +5,7 @@ namespace SalonManager.Customers.Core.Interfaces.Repositories
     public interface ICustomerCommandRepository
     {
         Task<Customer> InsertAsync(Customer entity);
-        Task<Customer> UpdateAsync(Customer entity, Guid tenantId);
+        Task<Customer> UpdateAsync(Customer entity, Guid id);
         Task<bool> DeleteAsync(Guid id, Guid tenantId);
         Task<bool> SaveChangesAsync();
         Task<Customer> GetByIdAsync(Guid id, Guid tenantId);

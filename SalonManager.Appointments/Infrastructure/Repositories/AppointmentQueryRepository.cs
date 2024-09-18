@@ -70,6 +70,32 @@ namespace SalonManager.Appointments.Infrastructure.Repositories
             }
         }
 
+        public async Task<List<Appointment>> GetAllByEmployeeIdAsync(Guid employeeId, Guid tenantId)
+        {
+            try
+            {
+                var query = """
+                            SELECT app.*
+                            FROM "Appointments" app
+                            WHERE app."IsActived" = True
+                            AND app."EmployeeAppointmentId" = @EmployeeId AND app."TenantId" = @TenantId
+                            """;
+
+                var parameters = new { EmployeeId = employeeId, TenantId = tenantId };
+
+                var appointments = await _dbSession.Connection.QueryAsync<Appointment>(
+                    query,
+                    parameters,
+                    transaction: _dbSession.Transaction);
+
+                return appointments.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
         public async Task<Appointment> GetByIdAsync(Guid id, Guid tenantId)
         {
             try

@@ -10,6 +10,7 @@ using SalonManager.Appointments.Features.Appointments.Commands.UpdateStatus;
 using SalonManager.Appointments.Features.Appointments.Queries.Select;
 using SalonManager.Appointments.Features.Appointments.Queries.SelectAll;
 using SalonManager.Appointments.Features.Appointments.Queries.SelectByCustomerId;
+using SalonManager.Appointments.Features.Appointments.Queries.SelectByEmployeeId;
 using SalonManager.Appointments.Features.Appointments.Queries.SelectFinishedByDate;
 
 namespace SalonManager.Appointments.Controllers
@@ -41,10 +42,15 @@ namespace SalonManager.Appointments.Controllers
             => await SendRequest(new SelectAllAppointmentsRequest(tenantId, pageNumber, pageSize), cancellationToken);
 
         ////[Authorize(Roles = "Owner,Employee,Admin,Customer")]
-        [HttpGet("{tenantId}/customer/{customerId}")]
+        [HttpGet("customer/{tenantId}/{customerId}")]
         public async Task<ActionResult<SelectAllAppointmentsByCustomerIdResponse>> SelectAllByCustomerId(
             [FromRoute] Guid tenantId, [FromRoute] Guid customerId, CancellationToken cancellationToken)
             => await SendRequest(new SelectAllAppointmentsByCustomerIdRequest(customerId, tenantId), cancellationToken);
+
+        [HttpGet("employee/{tenantId}/{employeeId}")]
+        public async Task<ActionResult<SelectAllAppointmentsByEmployeeIdResponse>> SelectAllByEmployeeId(
+            [FromRoute] Guid tenantId, [FromRoute] Guid employeeId, CancellationToken cancellationToken)
+            => await SendRequest(new SelectAllAppointmentsByEmployeeIdRequest(employeeId, tenantId), cancellationToken);
 
         ////[Authorize(Roles = "Owner,Admin")]
         [HttpGet("{tenantId}/allFinished/")]
