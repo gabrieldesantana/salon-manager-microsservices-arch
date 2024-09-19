@@ -8,7 +8,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Update
            (Guid id,
            Guid tenantId,
            string? cpf,
-           string? name,
+           string? fullName,
            string? nickname,
            string? gender,
            DateTime birthDate,
@@ -17,7 +17,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Update
             Id = id;
             TenantId = tenantId;
             Cpf = cpf;
-            Name = name;
+            FullName = fullName;
             Nickname = nickname;
             Gender = gender;
             BirthDate = birthDate;
@@ -27,7 +27,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Update
         public Guid Id { get; private set; }
         public Guid TenantId { get; private set; }
         public string? Cpf { get; private set; }
-        public string? Name { get; private set; }
+        public string? FullName { get; private set; }
         public string? Nickname { get; private set; }
         public string? Gender { get; private set; }
         public DateTime BirthDate { get; private set; }
@@ -38,7 +38,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Update
                 employee.Id,
                 employee.TenantId,
                 employee.Cpf,
-                employee.Name,
+                employee.FullName,
                 employee.Nickname,
                 employee.Gender,
                 employee.BirthDate,

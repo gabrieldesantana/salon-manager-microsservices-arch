@@ -1,9 +1,4 @@
-﻿using FluentResults;
-using MediatR;
-using SalonManager.Customers.CrossCutting.Enums;
-using SalonManager.Customers.CrossCutting.Responses;
-
-namespace SalonManager.Customers.CrossCutting.Requests
+﻿namespace SalonManager.Customers.CrossCutting.Requests
 {
     public class InsertUserRequest
     {

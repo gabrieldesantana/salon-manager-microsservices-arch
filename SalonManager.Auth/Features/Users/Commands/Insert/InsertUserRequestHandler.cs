@@ -38,6 +38,8 @@ namespace SalonManager.Auth.Features.Users.Commands.Insert
             if (result == null)
                 return Result.Fail<InsertUserResponse>($"{nameof(BadRequestException)}|Nao foi possivel inserir o usuario");
 
+            ///ATIVAR O USUARIO
+
             InsertUserResponse insertUserResponse = result;
             return Result.Ok(insertUserResponse);
         }

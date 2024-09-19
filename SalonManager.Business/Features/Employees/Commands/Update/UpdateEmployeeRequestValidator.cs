@@ -18,7 +18,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Update
                 .NotEmpty()
                 .WithMessage("{PropertyName} deve ser informado");
 
-            RuleFor(validation => validation.Name)
+            RuleFor(validation => validation.FullName)
                 .NotEmpty()
                 .WithMessage("{PropertyName} deve ser informado");
 

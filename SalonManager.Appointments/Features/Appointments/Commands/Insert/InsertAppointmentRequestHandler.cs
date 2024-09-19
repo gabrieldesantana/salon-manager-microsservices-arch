@@ -4,6 +4,7 @@ using MediatR;
 using Refit;
 using SalonManager.Appointments.Core.Entities;
 using SalonManager.Appointments.Core.Interfaces.Repositories;
+using SalonManager.Appointments.Features.Appointments.Commands.Finish;
 using SalonManager.Appointments.Infrastructure.Refit;
 using SalonManager.Customers.CrossCutting.Exceptions;
 
@@ -15,6 +16,7 @@ namespace SalonManager.Appointments.Features.Appointments.Commands.Insert
         private readonly ICustomerServiceRefit _customerServiceRefit;
         private readonly ISalonServiceServiceRefit _salonServiceRefit;
         private readonly IEmployeeServiceRefit _employeeServiceRefit;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         private readonly IValidator<InsertAppointmentRequest> _validator;
         public InsertAppointmentRequestHandler(
@@ -22,8 +24,8 @@ namespace SalonManager.Appointments.Features.Appointments.Commands.Insert
             ICustomerServiceRefit customerServiceRefit,
             ISalonServiceServiceRefit salonServiceRefit,
             IEmployeeServiceRefit employeeServiceRefit,
-
-        IValidator<InsertAppointmentRequest> validator
+            IHttpContextAccessor httpContextAccessor,
+            IValidator<InsertAppointmentRequest> validator
             )
         {
             _appointmentCommandRepository = appointmentCommandRepository;
@@ -31,22 +33,30 @@ namespace SalonManager.Appointments.Features.Appointments.Commands.Insert
             _salonServiceRefit = salonServiceRefit;
             _employeeServiceRefit = employeeServiceRefit;
             _validator = validator;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<Result<InsertAppointmentResponse>> Handle(InsertAppointmentRequest request, CancellationToken cancellationToken)
         {
             _validator.ValidateAndThrow(request);
 
-            var customerResult = await _customerServiceRefit.GetCustomerAsync(request.TenantId, request.CustomerAppointmentId);
+            var authorizationHeader = _httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
+            if (!authorizationHeader.ToString().StartsWith("Bearer"))
+            {
+                return Result.Fail<InsertAppointmentResponse>($"{nameof(UnauthorizedException)}|Nao foi possivel resgatar o token");
+            }
+            var token = authorizationHeader.ToString();
+
+            var customerResult = await _customerServiceRefit.GetCustomerAsync(token, request.TenantId, request.CustomerAppointmentId);
 
             if (!customerResult.IsSuccessStatusCode || customerResult.Content == null)
                 return Result.Fail<InsertAppointmentResponse>($"{nameof(ApiException)}|Nao foi possivel obter o cliente");
 
-            var salonServiceResult = await _salonServiceRefit.GetSalonServiceAsync(request.TenantId, request.ServiceAppointmentId);
+            var salonServiceResult = await _salonServiceRefit.GetSalonServiceAsync(token, request.TenantId, request.ServiceAppointmentId);
 
             if (!salonServiceResult.IsSuccessStatusCode || salonServiceResult.Content == null)
                 return Result.Fail<InsertAppointmentResponse>($"{nameof(ApiException)}|Nao foi possivel obter o servico");
 
-            var employeeResult = await _employeeServiceRefit.GetEmployeeAsync(request.TenantId, request.EmployeeAppointmentId);
+            var employeeResult = await _employeeServiceRefit.GetEmployeeAsync(token, request.TenantId, request.EmployeeAppointmentId);
 
             if (!employeeResult.IsSuccessStatusCode || employeeResult.Content == null)
                 return Result.Fail<InsertAppointmentResponse>($"{nameof(ApiException)}|Nao foi possivel obter o empregado");

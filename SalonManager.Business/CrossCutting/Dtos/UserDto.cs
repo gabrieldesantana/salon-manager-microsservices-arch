@@ -4,26 +4,26 @@ namespace SalonManager.Business.CrossCutting.Dtos
 {
     public class UserDto
     {
-        public UserDto(string? fullName, string? login, string? email,
-            string? password, EUserRole role)
-        {
-            FullName = fullName;
-            Login = login;
-            Email = email;
-            Password = password;
-            Role = role;
-            InUse = false;
-            InUseBy = string.Empty;
-        }
+        ////public UserDto(string? fullName, string? login, string? email,
+        ////    string? password, EUserRole role)
+        ////{
+        ////    FullName = fullName;
+        ////    Login = login;
+        ////    Email = email;
+        ////    Password = password;
+        ////    Role = role;
+        ////    InUse = false;
+        ////    InUseBy = string.Empty;
+        ////}
 
-        public string? FullName { get; private set; }
-        public string? Login { get; private set; }
-        public string? Email { get; private set; }
-        public string? Password { get; private set; }
-        public EUserRole Role { get; private set; }
+        public string? FullName { get; set; }
+        public string? Login { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+        public EUserRole Role { get; set; }
 
-        public bool InUse { get; private set; }
-        public string InUseBy { get; private set; }
+        public bool InUse { get; set; }
+        public string InUseBy { get; set; }
 
         #region BaseEntity
         public Guid Id { get; set; }

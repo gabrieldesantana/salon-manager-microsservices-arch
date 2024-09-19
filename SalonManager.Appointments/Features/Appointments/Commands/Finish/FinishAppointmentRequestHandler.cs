@@ -17,17 +17,20 @@ namespace SalonManager.Appointments.Features.Appointments.Commands.Finish
         private readonly ICustomerServiceRefit _customerServiceRefit;
         private readonly ISalonServiceServiceRefit _salonServiceServiceRefit;
         private readonly IValidator<FinishAppointmentRequest> _validator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public FinishAppointmentRequestHandler(
             IAppointmentCommandRepository commandRepository,
             IAppointmentQueryRepository queryRepository,
             ICustomerServiceRefit customerServiceRefit,
             ISalonServiceServiceRefit salonServiceServiceRefit,
+            IHttpContextAccessor httpContextAccessor,
             IValidator<FinishAppointmentRequest> validator)
         {
             _commandRepository = commandRepository;
             _queryRepository = queryRepository;
             _customerServiceRefit = customerServiceRefit;
             _salonServiceServiceRefit = salonServiceServiceRefit;
+            _httpContextAccessor = httpContextAccessor;
             _validator = validator;
         }
         public async Task<Result<FinishAppointmentResponse>> Handle(FinishAppointmentRequest request, CancellationToken cancellationToken)
@@ -46,7 +49,14 @@ namespace SalonManager.Appointments.Features.Appointments.Commands.Finish
             if (result == null)
                 return Result.Fail<FinishAppointmentResponse>($"{nameof(BadRequestException)}|Houve um erro ao persistir a alteração no banco de dados");
 
-            var serviceResult = await _salonServiceServiceRefit.GetSalonServiceAsync(request.TenantId, appointment.ServiceAppointmentId);
+            var authorizationHeader = _httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
+            if (!authorizationHeader.ToString().StartsWith("Bearer"))
+            {
+                return Result.Fail<FinishAppointmentResponse>($"{nameof(UnauthorizedException)}|Nao foi possivel resgatar o token");
+            }
+            var token = authorizationHeader.ToString();
+
+            var serviceResult = await _salonServiceServiceRefit.GetSalonServiceAsync(token, request.TenantId, appointment.ServiceAppointmentId);
 
             if (!serviceResult.IsSuccessStatusCode || serviceResult.Content == null)
                 return Result.Fail<FinishAppointmentResponse>($"{nameof(ApiException)}|Nao foi possivel localizar o servico");
@@ -59,7 +69,7 @@ namespace SalonManager.Appointments.Features.Appointments.Commands.Finish
                 LastServiceName = serviceResult.Content.Name!
             };
 
-            var customerResult = await _customerServiceRefit.IncreaseVisitedTimes(increaseVisitedTimesRequest);
+            var customerResult = await _customerServiceRefit.IncreaseVisitedTimes(token, increaseVisitedTimesRequest);
             if (!customerResult.IsSuccessStatusCode || customerResult.Content == null)
                 return Result.Fail<FinishAppointmentResponse>($"{nameof(ApiException)}|Nao foi possivel registrar a visita do cliente");
 

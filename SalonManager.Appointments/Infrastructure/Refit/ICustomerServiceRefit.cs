@@ -7,10 +7,11 @@ namespace SalonManager.Appointments.Infrastructure.Refit
 {
     public interface ICustomerServiceRefit
     {
-        [Get("/api/Customers/")]
-        Task<IApiResponse<CustomerDto>> GetCustomerAsync(Guid tenantId, Guid id);
+        [Headers]
+        [Get("/api/Customers/{tenantId}/{id}")]
+        Task<IApiResponse<CustomerDto>> GetCustomerAsync([Header("Authorization")] string token, Guid tenantId, Guid id);
 
         [Get("/api/Customers/increase-visited-times")]
-        Task<IApiResponse<IncreaseVisitedTimesResponse>> IncreaseVisitedTimes([Body] IncreaseVisitedTimesRequest request);
+        Task<IApiResponse<IncreaseVisitedTimesResponse>> IncreaseVisitedTimes([Header("Authorization")] string token, [Body] IncreaseVisitedTimesRequest request);
     }
 }

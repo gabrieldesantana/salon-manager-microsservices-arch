@@ -7,6 +7,6 @@ namespace SalonManager.Customers.Infrastructure.Refit
     {
         [Headers("accept: application/json")]
         [Get("/api/Appointments/customer/{tenantId}/{customerId}")]
-        Task<IApiResponse<SelectAllAppointmentsByCustomerIdResponse>> GetAppointmentsByCustomerAsync(Guid tenantId, Guid customerId);
+        Task<IApiResponse<SelectAllAppointmentsByCustomerIdResponse>> GetAppointmentsByCustomerAsync([Header("Authorization")] string token, Guid tenantId, Guid customerId);
     }
 }

@@ -19,21 +19,29 @@ namespace SalonManager.Customers.Features.Customers.Commands.Insert
         private readonly IUserServiceRefit _userServiceRefit;
         private readonly IAuthService _authService;
         private readonly IValidator<InsertCustomerRequest> _validator;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public InsertCustomerRequestHandler(
             ICustomerCommandRepository commandRepository,
             IUserServiceRefit userServiceRefit,
             IAuthService authService,
-            IValidator<InsertCustomerRequest> validator)
-            => (_commandRepository, _userServiceRefit, _authService, _validator) = (commandRepository, userServiceRefit, authService, validator);
+            IValidator<InsertCustomerRequest> validator,
+            IHttpContextAccessor httpContextAccessor)
+            => (_commandRepository, _userServiceRefit, _authService, _validator, _httpContextAccessor) = (commandRepository, userServiceRefit, authService, validator, httpContextAccessor);
         public async Task<Result<InsertCustomerResponse>> Handle(InsertCustomerRequest request, CancellationToken cancellationToken)
         {
             _validator.ValidateAndThrow(request);
 
-            var userLogin = FormartToLoginName(request.FullName);
-            var userPassword = GenerateDefaultPassword(request.FullName, request.Cpf);
+            var userLogin = FormartToLoginName(request.FullName!);
+            var userPassword = GenerateDefaultPassword(request.FullName!, request.Cpf!);
 
             var passwordHash = _authService.ComputeSha256Hash(userPassword);
+
+            var authorizationHeader = _httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
+            if (!authorizationHeader.ToString().StartsWith("Bearer"))
+            {
+                return Result.Fail<InsertCustomerResponse>($"{nameof(UnauthorizedException)}|Nao foi possivel resgatar o token");
+            }
+            var token = authorizationHeader.ToString();
 
             UserDto newUserToCustomer = new(
                 request.FullName,
@@ -44,7 +52,7 @@ namespace SalonManager.Customers.Features.Customers.Commands.Insert
                 );
 
             var requestUser = new InsertUserRequest(newUserToCustomer.FullName, newUserToCustomer.Login, newUserToCustomer.Email, newUserToCustomer.Password, (int)newUserToCustomer.Role);
-            var resultCreateUser = await _userServiceRefit.InsertUserAsync(requestUser);
+            var resultCreateUser = await _userServiceRefit.InsertUserAsync(token, requestUser);
 
             if (!resultCreateUser.IsSuccessStatusCode || resultCreateUser.Content == null)
                 return Result.Fail<InsertCustomerResponse>($"{nameof(ApiException)}|Nao foi possivel inserir o usuario vinculado ao cliente");
@@ -65,6 +73,11 @@ namespace SalonManager.Customers.Features.Customers.Commands.Insert
 
             if (resultCreateCustomer == null)
                 return Result.Fail<InsertCustomerResponse>($"{nameof(BadRequestException)}|Nao foi possivel inserir o cliente");
+
+
+            var activateUserResult = await _userServiceRefit.ActivateUserAsync(token, new(customer.UserId, customer.FullName!));
+            if (!activateUserResult.IsSuccessStatusCode || activateUserResult.Content == null)
+                return Result.Fail<InsertCustomerResponse>($"{nameof(ApiException)}|Nao foi possivel ativar o usuario vinculado ao cliente");
 
             InsertCustomerResponse insertCustomerResponse = resultCreateCustomer;
             return Result.Ok(insertCustomerResponse);

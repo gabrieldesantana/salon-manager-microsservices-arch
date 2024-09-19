@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalonManager.Customers.CrossCutting.Models;
 using SalonManager.Customers.Features.Customers.Commands.Delete;
@@ -10,6 +11,7 @@ using SalonManager.Customers.Features.Customers.Queries.SelectAll;
 
 namespace SalonManager.Customers.Controllers
 {
+    [Authorize(Roles = "Owner,Employee,Admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomersController : MainController

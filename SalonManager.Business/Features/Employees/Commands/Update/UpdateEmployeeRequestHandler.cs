@@ -24,7 +24,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Update
                 return Result.Fail<UpdateEmployeeResponse>($"{nameof(NotFoundException)}|Nao foi possivel localizar o empregado de ID: {request.Id}");
 
             employee.Update(
-                request.Cpf, request.Name,
+                request.Cpf, request.FullName,
                 request.Nickname, request.Gender,
                 request.BirthDate, request.PhoneNumber
                 );

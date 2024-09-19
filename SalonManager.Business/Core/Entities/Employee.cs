@@ -9,14 +9,14 @@ namespace SalonManager.Business.Core.Entities
             Appointments = [];
         }
 
-        public Employee(Guid tenantId, Guid userCreatorId, Guid userId, Guid companyId, string? cpf, string? name, string? nickname, string? gender, DateTime birthDate, string? phoneNumber)
+        public Employee(Guid tenantId, Guid userCreatorId, Guid userId, Guid companyId, string? cpf, string? fullName, string? nickname, string? gender, DateTime birthDate, string? phoneNumber)
         {
             TenantId = tenantId;
             UserCreatorId = userCreatorId;
             UserId = userId;
             CompanyId = companyId;
             Cpf = cpf;
-            Name = name;
+            FullName = fullName;
             Nickname = nickname;
             Gender = gender;
             BirthDate = birthDate;
@@ -28,7 +28,7 @@ namespace SalonManager.Business.Core.Entities
         public Guid CompanyId { get; private set; }
 
         public string? Cpf { get; private set; }
-        public string? Name { get; private set; }
+        public string? FullName { get; private set; }
         public string? Nickname { get; private set; }
         public string? Gender { get; private set; }
         public DateTime BirthDate { get; private set; }
@@ -38,11 +38,11 @@ namespace SalonManager.Business.Core.Entities
         public Company? Company { get; set; }
         public List<AppointmentDto>? Appointments { get; set; }
 
-        public void Update(string cpf, string name, string nickname,
+        public void Update(string cpf, string fullName, string nickname,
            string gender, DateTime birthDate, string phoneNumber)
         {
             Cpf = cpf;
-            Name = name;
+            FullName = fullName;
             Nickname = nickname;
             Gender = gender;
             BirthDate = birthDate;

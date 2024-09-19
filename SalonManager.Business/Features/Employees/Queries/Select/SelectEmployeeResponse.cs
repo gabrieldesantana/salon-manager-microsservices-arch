@@ -6,7 +6,7 @@ namespace SalonManager.Business.Features.Employees.Queries.Select
     public class SelectEmployeeResponse
     {
         public SelectEmployeeResponse(Guid id, Guid tenantId, Guid userId,
-            Guid companyId, string? cpf, string? name,
+            Guid companyId, string? cpf, string? fullName,
             string? nickname, string? gender, DateTime birthDate,
             string? phoneNumber, List<AppointmentDto>? appointments)
         {
@@ -15,7 +15,7 @@ namespace SalonManager.Business.Features.Employees.Queries.Select
             UserId = userId;
             CompanyId = companyId;
             Cpf = cpf;
-            Name = name;
+            FullName = fullName;
             Nickname = nickname;
             Gender = gender;
             BirthDate = birthDate;
@@ -29,7 +29,7 @@ namespace SalonManager.Business.Features.Employees.Queries.Select
         public Guid CompanyId { get; private set; }
 
         public string? Cpf { get; private set; }
-        public string? Name { get; private set; }
+        public string? FullName { get; private set; }
         public string? Nickname { get; private set; }
         public string? Gender { get; private set; }
         public DateTime BirthDate { get; private set; }
@@ -46,7 +46,7 @@ namespace SalonManager.Business.Features.Employees.Queries.Select
                 employee.UserId,
                 employee.CompanyId,
                 employee.Cpf,
-                employee.Name,
+                employee.FullName,
                 employee.Nickname,
                 employee.Gender,
                 employee.BirthDate,
@@ -61,7 +61,7 @@ namespace SalonManager.Business.Features.Employees.Queries.Select
                 employee.UserId,
                 employee.CompanyId,
                 employee.Cpf,
-                employee.Name,
+                employee.FullName,
                 employee.Nickname,
                 employee.Gender,
                 employee.BirthDate,

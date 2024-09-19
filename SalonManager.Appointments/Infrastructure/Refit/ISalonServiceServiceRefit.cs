@@ -5,7 +5,7 @@ namespace SalonManager.Appointments.Infrastructure.Refit
 {
     public interface ISalonServiceServiceRefit
     {
-        [Get("/api/SalonServices/")]
-        Task<IApiResponse<SalonServiceDto>> GetSalonServiceAsync(Guid tenantId, Guid id);
+        [Get("/api/SalonServices/{tenantId}/{id}")]
+        Task<IApiResponse<SalonServiceDto>> GetSalonServiceAsync([Header("Authorization")] string token, Guid tenantId, Guid id);
     }
 }

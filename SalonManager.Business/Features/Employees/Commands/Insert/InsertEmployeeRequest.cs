@@ -11,7 +11,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Insert
             Guid userId,
             Guid companyId,
             string? cpf,
-            string? name,
+            string? fullName,
             string? nickname,
             string? gender,
             DateTime birthDate,
@@ -22,10 +22,10 @@ namespace SalonManager.Business.Features.Employees.Commands.Insert
             UserId = userId;
             CompanyId = companyId;
             Cpf = cpf;
-            Name = name;
+            FullName = fullName;
             Nickname = nickname;
             Gender = gender;
-            BirthDate = birthDate;
+            BirthDate = DateTime.SpecifyKind(birthDate, DateTimeKind.Unspecified);
             PhoneNumber = phoneNumber;
         }
 
@@ -35,7 +35,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Insert
         public Guid CompanyId { get; private set; }
 
         public string? Cpf { get; private set; }
-        public string? Name { get; private set; }
+        public string? FullName { get; private set; }
         public string? Nickname { get; private set; }
         public string? Gender { get; private set; }
         public DateTime BirthDate { get; private set; }

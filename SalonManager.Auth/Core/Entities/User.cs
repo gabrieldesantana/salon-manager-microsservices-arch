@@ -26,12 +26,12 @@ namespace SalonManager.Auth.Core.Entities
         public bool InUse { get; private set; }
         public string InUseBy { get; private set; }
 
-        public void ActivateUser(string username)
+        public void ActivateUser(string fullName)
         {
             if (!InUse)
             {
                 InUse = true;
-                InUseBy = username;
+                InUseBy = fullName;
             }
         }
 

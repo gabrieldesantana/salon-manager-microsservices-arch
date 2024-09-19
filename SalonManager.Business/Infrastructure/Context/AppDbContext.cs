@@ -20,7 +20,7 @@ namespace SalonManager.Business.Infrastructure.Context
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             var connectionString = _configuration.GetConnectionString("Database");
-            options.UseNpgsql(connectionString, b => b.MigrationsAssembly("SalonManager.Infrastructure"));
+            options.UseNpgsql(connectionString, b => b.MigrationsAssembly("SalonManager.Business"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

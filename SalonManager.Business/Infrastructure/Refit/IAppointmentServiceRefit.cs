@@ -7,6 +7,6 @@ namespace SalonManager.Business.Infrastructure.Refit
     {
 
         [Get("/api/Appointments/employee/{tenantId}/{employeeId}")]
-        Task<IApiResponse<SelectAllAppointmentsByEmployeeIdResponse>> GetAppointmentsByEmployeeAsync(Guid tenantId, Guid employeeId);
+        Task<IApiResponse<SelectAllAppointmentsByEmployeeIdResponse>> GetAppointmentsByEmployeeAsync([Header("Authorization")] string token, Guid tenantId, Guid employeeId);
     }
 }

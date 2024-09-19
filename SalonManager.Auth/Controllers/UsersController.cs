@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalonManager.Auth.CrossCutting.Models;
+using SalonManager.Auth.Features.Users.Commands.ActivateUser;
 using SalonManager.Auth.Features.Users.Commands.Delete;
 using SalonManager.Auth.Features.Users.Commands.Insert;
 using SalonManager.Auth.Features.Users.Commands.Update;
@@ -26,7 +27,7 @@ namespace SalonManager.Auth.Controllers
             CancellationToken cancellationToken)
             => await SendRequest(new SelectUserRequest(id), cancellationToken);
 
-        ////[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("")]
         public async Task<ActionResult<PagedResult<SelectUserResponse>>> SelectAll(
             [FromQuery] int pageNumber,
@@ -34,7 +35,7 @@ namespace SalonManager.Auth.Controllers
             CancellationToken cancellationToken)
             => await SendRequest(new SelectAllUsersRequest(pageNumber, pageSize), cancellationToken);
 
-        ////[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Owner,Employee,Admin")]
         [HttpPost("")]
         public async Task<ActionResult<InsertUserResponse>> Insert(
             [FromBody] InsertUserRequest request, CancellationToken cancellationToken)
@@ -44,6 +45,12 @@ namespace SalonManager.Auth.Controllers
         [HttpPut("")]
         public async Task<ActionResult<UpdateUserResponse>> Update(
             [FromBody] UpdateUserRequest request, CancellationToken cancellationToken)
+            => await SendRequest(request, cancellationToken);
+
+        [Authorize(Roles = "Owner,Employee,Admin")]
+        [HttpPut("activate-user")]
+        public async Task<ActionResult<ActivateUserResponse>> ActivateUser(
+            [FromBody] ActivateUserRequest request, CancellationToken cancellationToken)
             => await SendRequest(request, cancellationToken);
 
         [Authorize(Roles = "Admin")]

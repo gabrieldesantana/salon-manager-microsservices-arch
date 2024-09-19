@@ -19,7 +19,7 @@ namespace SalonManager.Appointments.CrossCutting.Dtos
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
 
-            Appointments = [];
+            ////Appointments = [];
         }
         public Guid UserId { get; set; }
 
@@ -33,7 +33,7 @@ namespace SalonManager.Appointments.CrossCutting.Dtos
         public string? LastServiceName { get; set; }
         public DateTime LastServiceDate { get; set; }
         public int TimesVisited { get; set; }
-        public List<Appointment>? Appointments { get; set; }
+        ////public List<Appointment>? Appointments { get; set; }
 
         #region BaseEntity
         public Guid Id { get; set; }

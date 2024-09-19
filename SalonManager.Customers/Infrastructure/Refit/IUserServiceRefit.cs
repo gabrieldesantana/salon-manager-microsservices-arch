@@ -8,9 +8,10 @@ namespace SalonManager.Customers.Infrastructure.Refit
     {
         [Post("/api/Users/")]
         [Headers("Content-type: application/json")]
-        Task<IApiResponse<InsertUserResponse>> InsertUserAsync([Body] InsertUserRequest request);
+        Task<IApiResponse<InsertUserResponse>> InsertUserAsync([Header("Authorization")] string token, [Body] InsertUserRequest request);
 
-        ////[Put("/api/Users/")]
-        ////Task<IApiResponse<InsertUserResponse>> GetUsersAsync([Query] int pageNumber, [Query] int pageSize);
+        [Put("/api/Users/activate-user")]
+        [Headers("Content-type: application/json")]
+        Task<IApiResponse<ActivateUserResponse>> ActivateUserAsync([Header("Authorization")] string token, [Body] ActivateUserRequest request);
     }
 }

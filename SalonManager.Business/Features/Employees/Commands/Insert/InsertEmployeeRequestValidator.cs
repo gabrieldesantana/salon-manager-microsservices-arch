@@ -29,7 +29,7 @@ namespace SalonManager.Business.Features.Employees.Commands.Insert
                 .Must(RegexValidation.ValidaCpf!)
                 .WithMessage("CPF invalido. Exemplo: 123.456.789-12");
 
-            RuleFor(validation => validation.Name)
+            RuleFor(validation => validation.FullName)
                 .NotEmpty()
                 .WithMessage("{PropertyName} deve ser informado");
 
