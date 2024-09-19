@@ -7,7 +7,7 @@ using SalonManager.Auth.Features.Auth.Commands.Login;
 namespace SalonManager.Auth.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : MainController
     {
 
@@ -15,7 +15,7 @@ namespace SalonManager.Auth.Controllers
         {
         }
 
-        [HttpPut("login")]
+        [HttpPost("login")]
         public async Task<ActionResult<LoginUserResponse>> Login(
         [FromBody] LoginUserRequest request, CancellationToken cancellationToken)
         => await SendRequest(request, cancellationToken);

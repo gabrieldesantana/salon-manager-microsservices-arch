@@ -3,9 +3,10 @@
     "BaseUrl": "https://localhost:7001"
   },
   "Routes": [
+    //Appointments
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/{id}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -16,9 +17,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/appointments/{tenantId}?pageNumber={pageNumber}&pageSize={pageSize}",
-      "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamPathTemplate": "/api/appointments/{tenantId}?pageNumber={pageNumber}&pageSize={pageSize}",
+      "UpstreamPathTemplate": "/gateway/appointments/{tenantId}?pageNumber=1&pageSize=111",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/appointments/{tenantId}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -29,7 +30,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/customer/{customerId}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/customer/{customerId}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -41,7 +42,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/employee/{employeeId}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/employee/{employeeId}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -53,7 +54,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/allFinished?startDate={startDate}&endDate={endDate}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/allFinished?startDate={startDate}&endDate={endDate}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -65,7 +66,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/{id}",
-      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -76,21 +77,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/appointments",
-      "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamPathTemplate": "/api/appointments}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7005
-        }
-      ]
-    },
-    {
-      "UpstreamPathTemplate": "/gateway/appointments",
-      "UpstreamHttpMethod": [ "Put" ],
-      "DownstreamPathTemplate": "/api/appointments",
+      "UpstreamPathTemplate": "/gateway/appointments/",
+      "UpstreamHttpMethod": [ "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/appointments/",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -101,7 +90,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/finish",
-      "UpstreamHttpMethod": [ "Put" ],
+      "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/appointments/finish",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -113,7 +102,7 @@
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/update-status",
-      "UpstreamHttpMethod": [ "Patch" ],
+      "UpstreamHttpMethod": [ "PATCH" ],
       "DownstreamPathTemplate": "/api/appointments/update-status",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -122,6 +111,280 @@
           "Port": 7005
         }
       ]
+    },
+    //Auth
+    {
+      "UpstreamPathTemplate": "/gateway/auth/login/",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/auth/login/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/auth/changePassword/",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/api/auth/changePassword/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ]
+    },
+
+    //Users
+    {
+      "UpstreamPathTemplate": "/gateway/users/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/users/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/users/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/users/",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/users/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/users/activate-user/",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/api/users/activate-user/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7004
+        }
+      ]
+    },
+    //Companies
+    {
+      "UpstreamPathTemplate": "/gateway/companies/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/companies/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/companies/",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/companies/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/companies/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/companies/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    //Employees
+    {
+      "UpstreamPathTemplate": "/gateway/employees/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/employees/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/employees/{tenantId}/",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/employees/{tenantId}/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/employees/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/employees/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/employees/",
+      "UpstreamHttpMethod": [ "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/employees/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    //SalonServices
+    {
+      "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/salonservices/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/salonservices/{tenantId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/salonservices/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/salonservices/",
+      "UpstreamHttpMethod": [ "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/salonservices/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7003
+        }
+      ]
+    },
+
+    //Customers
+    {
+      "UpstreamPathTemplate": "/gateway/customers/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/customers/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/customers/{tenantId}}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/customers/{tenantId}/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/customers/{tenantId}/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/customers/{tenantId}/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ]
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/customers/",
+      "UpstreamHttpMethod": [ "POST", "PUT" ],
+      "DownstreamPathTemplate": "/api/customers/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/customers/increase-visited-times/",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/api/customers/increase-visited-times/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ]
     }
+
   ]
 }

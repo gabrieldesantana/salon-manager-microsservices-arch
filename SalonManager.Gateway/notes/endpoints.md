@@ -22,9 +22,9 @@ PATCH https://localhost:7002/api/Appointments/update-status OK  [Authorize(Roles
 
 GET https://localhost:7002/api/Companies/{tenantId}/{id} OK [Authorize(Roles = "Admin")]
 
-DELETE https://localhost:7002/api/Companies/{tenantId}/{id} [Authorize(Roles = "Admin")]
-
 GET https://localhost:7002/api/Companies OK [Authorize(Roles = "Admin")]
+
+DELETE https://localhost:7002/api/Companies/{tenantId}/{id} [Authorize(Roles = "Admin")]
 
 POST https://localhost:7002/api/Companies OKK [Authorize(Roles = "Admin")]
 
@@ -33,9 +33,9 @@ PUT https://localhost:7002/api/Companies OK [Authorize(Roles = "Admin")]
 
 GET https://localhost:7002/api/Customers/{tenantId}/{id} OK [Authorize(Roles = "Owner,Employee,Admin")]
 
-DELETE https://localhost:7002/api/Customers/{tenantId}/{id} [Authorize(Roles = "Owner,Employee,Admin")]
-
 GET https://localhost:7002/api/Customers/{tenantId} OK [Authorize(Roles = "Owner,Employee,Admin")]
+
+DELETE https://localhost:7002/api/Customers/{tenantId}/{id} [Authorize(Roles = "Owner,Employee,Admin")]
 
 POST https://localhost:7002/api/Customers OKK [Authorize(Roles = "Owner,Employee,Admin")]
 
