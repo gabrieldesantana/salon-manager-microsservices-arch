@@ -8,7 +8,7 @@
             CreatedAt = DateTime.Now;
             IsActived = true;
         }
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public DateTime CreatedAt { get; private set; }
 
         public Guid TenantId { get; set; }

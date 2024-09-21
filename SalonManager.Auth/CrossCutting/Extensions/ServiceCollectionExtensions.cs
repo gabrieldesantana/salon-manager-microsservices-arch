@@ -76,7 +76,8 @@ namespace SalonManager.Auth.CrossCutting.Extensions
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
 
-            var connectionString = configuration.GetConnectionString("Database");
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+            ////var connectionString = configuration.GetConnectionString("Database");
 
             services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(connectionString));

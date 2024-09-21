@@ -1,17 +1,15 @@
 {
-  "GlobalConfiguration": {
-    "BaseUrl": "salonmanager-gateway-service"
-  },
+  "GlobalConfiguration": {},
   "Routes": [
     //Appointments
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -20,10 +18,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}?pageNumber=1&pageSize=111",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -32,10 +30,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/customer/{customerId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/customer/{customerId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -44,10 +42,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/employee/{employeeId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/employee/{employeeId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -56,10 +54,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/allFinished?startDate={startDate}&endDate={endDate}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/allFinished?startDate={startDate}&endDate={endDate}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -68,11 +66,11 @@
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7005
+          "Host": "salonmanager-appointments",
+          "Port": 8080
         }
       ]
     },
@@ -80,10 +78,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/appointments/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -92,10 +90,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/finish",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/appointments/finish",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -104,10 +102,10 @@
       "UpstreamPathTemplate": "/gateway/appointments/update-status",
       "UpstreamHttpMethod": [ "PATCH" ],
       "DownstreamPathTemplate": "/api/appointments/update-status",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-appointments-service",
+          "Host": "salonmanager-appointments",
           "Port": 8080
         }
       ]
@@ -117,10 +115,10 @@
       "UpstreamPathTemplate": "/gateway/auth/login/",
       "UpstreamHttpMethod": [ "POST" ],
       "DownstreamPathTemplate": "/api/auth/login/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-auth-service",
+          "Host": "salonmanager-auth",
           "Port": 8080
         }
       ]
@@ -129,10 +127,10 @@
       "UpstreamPathTemplate": "/gateway/auth/changePassword/",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/auth/changePassword/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-auth-service",
+          "Host": "salonmanager-auth",
           "Port": 8080
         }
       ]
@@ -143,10 +141,10 @@
       "UpstreamPathTemplate": "/gateway/users/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/users/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-auth-service",
+          "Host": "salonmanager-auth",
           "Port": 8080
         }
       ]
@@ -155,10 +153,10 @@
       "UpstreamPathTemplate": "/gateway/users/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/users/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-auth-service",
+          "Host": "salonmanager-auth",
           "Port": 8080
         }
       ]
@@ -167,10 +165,10 @@
       "UpstreamPathTemplate": "/gateway/users/",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/users/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-auth-service",
+          "Host": "salonmanager-auth",
           "Port": 8080
         }
       ]
@@ -179,10 +177,10 @@
       "UpstreamPathTemplate": "/gateway/users/activate-user/",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/users/activate-user/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-auth-service",
+          "Host": "salonmanager-auth",
           "Port": 8080
         }
       ]
@@ -192,10 +190,10 @@
       "UpstreamPathTemplate": "/gateway/companies/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/companies/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -204,10 +202,10 @@
       "UpstreamPathTemplate": "/gateway/companies/",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/companies/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -216,10 +214,10 @@
       "UpstreamPathTemplate": "/gateway/companies/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/companies/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -229,10 +227,10 @@
       "UpstreamPathTemplate": "/gateway/employees/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/employees/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -241,10 +239,10 @@
       "UpstreamPathTemplate": "/gateway/employees/{tenantId}/",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/employees/{tenantId}/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -253,10 +251,10 @@
       "UpstreamPathTemplate": "/gateway/employees/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/employees/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -265,10 +263,10 @@
       "UpstreamPathTemplate": "/gateway/employees/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/employees/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -278,10 +276,10 @@
       "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/salonservices/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -290,10 +288,10 @@
       "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/salonservices/{tenantId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -302,10 +300,10 @@
       "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/salonservices/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -314,10 +312,10 @@
       "UpstreamPathTemplate": "/gateway/salonservices/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/salonservices/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-business-service",
+          "Host": "salonmanager-business",
           "Port": 8080
         }
       ]
@@ -328,10 +326,10 @@
       "UpstreamPathTemplate": "/gateway/customers/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/customers/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-customers-service",
+          "Host": "salonmanager-customers",
           "Port": 8080
         }
       ]
@@ -340,10 +338,10 @@
       "UpstreamPathTemplate": "/gateway/customers/{tenantId}}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/customers/{tenantId}/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-customers-service",
+          "Host": "salonmanager-customers",
           "Port": 8080
         }
       ]
@@ -352,10 +350,10 @@
       "UpstreamPathTemplate": "/gateway/customers/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/customers/{tenantId}/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-customers-service",
+          "Host": "salonmanager-customers",
           "Port": 8080
         }
       ]
@@ -365,10 +363,10 @@
       "UpstreamPathTemplate": "/gateway/customers/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/customers/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-customers-service",
+          "Host": "salonmanager-customers",
           "Port": 8080
         }
       ]
@@ -377,10 +375,10 @@
       "UpstreamPathTemplate": "/gateway/customers/increase-visited-times/",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/customers/increase-visited-times/",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "salonmanager-customers-service",
+          "Host": "salonmanager-customers",
           "Port": 8080
         }
       ]

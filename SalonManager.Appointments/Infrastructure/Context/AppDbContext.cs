@@ -17,7 +17,8 @@ namespace SalonManager.Appointments.Infrastructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var connectionString = _configuration.GetConnectionString("Database");
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+            ////var connectionString = _configuration.GetConnectionString("Database");
             options.UseNpgsql(connectionString, b => b.MigrationsAssembly("SalonManager.Appointments"));
         }
 

@@ -10,7 +10,8 @@ namespace SalonManager.Business.Infrastructure.Context
 
         public DbSession(IConfiguration configuration)
         {
-            Connection = new NpgsqlConnection(configuration.GetConnectionString("Database"));
+            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
+            Connection = new NpgsqlConnection(connectionString);
             Connection.Open();
         }
 

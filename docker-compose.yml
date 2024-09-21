@@ -1,0 +1,126 @@
+version: latest
+
+services:
+  salonmanager-auth:
+    build:
+      context: ./SalonManager.Auth
+      dockerfile: Dockerfile
+    container_name: salonmanager-auth
+    hostname: salonmanager-auth
+    ports:
+    - "7004:8080"
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=salonmanager-auth-db;Database=authdb;Username=postgres;Password=Senha123!
+    depends_on:
+      - salonmanager-auth-db
+
+  salonmanager-appointments:
+    build:
+      context: ./SalonManager.Appointments
+      dockerfile: Dockerfile
+    container_name: salonmanager-appointments
+    hostname: salonmanager-appointments
+    ports:
+    - "7005:8080"
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=salonmanager-appointments-db;Database=appointmentsdb;Username=postgres;Password=Senha123!
+    depends_on:
+      - salonmanager-appointments-db
+
+  salonmanager-business:
+    build:
+      context: ./SalonManager.Business
+      dockerfile: Dockerfile
+    container_name: salonmanager-business
+    hostname: salonmanager-business
+    ports:
+    - "7003:8080"
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=salonmanager-business-db;Database=businessdb;Username=postgres;Password=Senha123!
+    depends_on:
+      - salonmanager-business-db
+
+  salonmanager-customers:
+    build:
+      context: ./SalonManager.Customers
+      dockerfile: Dockerfile
+    container_name: salonmanager-customers
+    hostname: salonmanager-customers
+    ports:
+    - "7002:8080"
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=salonmanager-customers-db;Database=customersdb;Username=postgres;Password=Senha123!
+    depends_on:
+      - salonmanager-customers-db
+
+  salonmanager-gateway:
+    build:
+      context: ./SalonManager.Gateway
+      dockerfile: Dockerfile
+    container_name: salonmanager-gateway-ctn
+    ports:
+      - "7001:8080"
+    links:
+      - salonmanager-appointments
+      - salonmanager-auth
+      - salonmanager-business
+      - salonmanager-customers
+    depends_on:
+      - salonmanager-appointments
+      - salonmanager-auth
+      - salonmanager-business
+      - salonmanager-customers
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+  salonmanager-auth-db:
+    image: postgres:latest
+    container_name: salonmanager-auth-db
+    environment:
+      - POSTGRES_DB=authdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Senha123!
+    ports:
+      - "5432:5432"
+
+  salonmanager-appointments-db:
+    image: postgres:latest
+    container_name: salonmanager-appointments-db
+    environment:
+      - POSTGRES_DB=appointmentsdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Senha123!
+    ports:
+      - "5433:5432"
+
+  salonmanager-business-db:
+    image: postgres:latest
+    container_name: salonmanager-business-db
+    environment:
+      - POSTGRES_DB=businessdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Senha123!
+    ports:
+      - "5434:5432"
+
+  salonmanager-customers-db:
+    image: postgres:latest
+    container_name: salonmanager-customers-db
+    environment:
+      - POSTGRES_DB=customersdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Senha123!
+    ports:
+      - "5435:5432"
+
+networks:
+  default:
+    driver: bridge

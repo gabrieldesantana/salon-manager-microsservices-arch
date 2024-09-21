@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using SalonManager.Customers.CrossCutting.Extensions;
+using SalonManager.Customers.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,13 @@ builder.Services.AddRefit(builder.Configuration);
 builder.Services.AddJwt(builder.Configuration);
 builder.Services.AddApplication();
 
+builder.Configuration.AddEnvironmentVariables();
+
 var app = builder.Build();
+
+await using var scope = app.Services.CreateAsyncScope();
+await using var db = scope.ServiceProvider.GetService<AppDbContext>();
+await db.Database.MigrateAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

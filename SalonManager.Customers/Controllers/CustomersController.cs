@@ -11,7 +11,7 @@ using SalonManager.Customers.Features.Customers.Queries.SelectAll;
 
 namespace SalonManager.Customers.Controllers
 {
-    [Authorize(Roles = "Owner,Employee,Admin")]
+    //[Authorize(Roles = "Owner,Employee,Admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomersController : MainController
