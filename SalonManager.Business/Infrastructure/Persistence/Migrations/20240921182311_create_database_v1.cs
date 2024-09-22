@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SalonManager.Business.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_tables_empcomsal_v1 : Migration
+    public partial class create_database_v1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,7 +56,7 @@ namespace SalonManager.Business.Infrastructure.Persistence.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uuid", nullable: false),
                     Cpf = table.Column<string>(type: "varchar(14)", nullable: false),
-                    Name = table.Column<string>(type: "varchar(80)", nullable: false),
+                    FullName = table.Column<string>(type: "varchar(80)", nullable: false),
                     Nickname = table.Column<string>(type: "varchar(30)", nullable: false),
                     Gender = table.Column<string>(type: "varchar(20)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),

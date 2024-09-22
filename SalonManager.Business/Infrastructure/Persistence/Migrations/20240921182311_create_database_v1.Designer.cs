@@ -12,8 +12,8 @@ using SalonManager.Business.Infrastructure.Context;
 namespace SalonManager.Business.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240918191330_Create_tables_emp-com-sal_v1")]
-    partial class Create_tables_empcomsal_v1
+    [Migration("20240921182311_create_database_v1")]
+    partial class create_database_v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,10 @@ namespace SalonManager.Business.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp")
                         .HasColumnName("CreatedAt");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("varchar(80)");
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -93,10 +97,6 @@ namespace SalonManager.Business.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Nickname")
                         .IsRequired()

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salonmanager-appointments-dp
+  namespace: salonmanager-hom-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: salonmanager-appointments
+  template:
+    metadata:
+      name: salonmanager-appointments-pod
+      labels:
+        app: salonmanager-appointments
+    spec:
+      containers:
+      - name: salonmanager-appointments
+        image: gsgomes/salonmanager-appointments:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        env:
+          - name: ConnectionStrings__DefaultConnection
+            value: "Host=salonmanager-appointments-db-svc.salonmanager-hom-ns.svc.cluster.local;Port=5432;Database=appointmentsdb;Username=postgres;Password=Senha123!"

@@ -1,139 +1,125 @@
 {
-  "GlobalConfiguration": {},
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1",
+      "Port": 49243,
+      "Token": "MEU_TOKEN_MANUAL",
+      "Namespace": "salonmanager-hom-ns",
+      "Type": "KubernetesServiceDiscoveryProvider"
+    }
+  },
   "Routes": [
     //Appointments
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/{id}",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}?pageNumber=1&pageSize=111",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/customer/{customerId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/customer/{customerId}",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/employee/{employeeId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/employee/{employeeId}",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/allFinished?startDate={startDate}&endDate={endDate}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/allFinished?startDate={startDate}&endDate={endDate}",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/appointments/{tenantId}/{id}",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/appointments/",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/finish",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/appointments/finish",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/appointments/update-status",
       "UpstreamHttpMethod": [ "PATCH" ],
       "DownstreamPathTemplate": "/api/appointments/update-status",
+      "ServiceName": "salonmanager-appointments-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-appointments-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     //Auth
     {
       "UpstreamPathTemplate": "/gateway/auth/login/",
       "UpstreamHttpMethod": [ "POST" ],
       "DownstreamPathTemplate": "/api/auth/login/",
+      "ServiceName": "salonmanager-auth-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-auth-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/auth/changePassword/",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/auth/changePassword/",
+      "ServiceName": "salonmanager-auth-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-auth-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
 
     //Users
@@ -141,184 +127,154 @@
       "UpstreamPathTemplate": "/gateway/users/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/users/{id}",
+      "ServiceName": "salonmanager-auth-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-auth-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/users/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/users/{id}",
+      "ServiceName": "salonmanager-auth-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-auth-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/users/",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/users/",
+      "ServiceName": "salonmanager-auth-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-auth-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/users/activate-user/",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/users/activate-user/",
+      "ServiceName": "salonmanager-auth-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-auth-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     //Companies
     {
       "UpstreamPathTemplate": "/gateway/companies/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/companies/{tenantId}/{id}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/companies/",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/companies/",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/companies/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/companies/{tenantId}/{id}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     //Employees
     {
       "UpstreamPathTemplate": "/gateway/employees/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/employees/{tenantId}/{id}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/employees/{tenantId}/",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/employees/{tenantId}/",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/employees/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/employees/{tenantId}/{id}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/employees/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/employees/",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     //SalonServices
     {
       "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/salonservices/{tenantId}/{id}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/salonservices/{tenantId}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/salonservices/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/salonservices/{tenantId}/{id}",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/salonservices/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/salonservices/",
+      "ServiceName": "salonmanager-business-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-business-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
 
     //Customers
@@ -326,62 +282,52 @@
       "UpstreamPathTemplate": "/gateway/customers/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/customers/{tenantId}/{id}",
+      "ServiceName": "salonmanager-customers-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-customers-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/customers/{tenantId}}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/customers/{tenantId}/",
+      "ServiceName": "salonmanager-customers-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-customers-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/customers/{tenantId}/{id}",
       "UpstreamHttpMethod": [ "DELETE" ],
       "DownstreamPathTemplate": "/api/customers/{tenantId}/{id}",
+      "ServiceName": "salonmanager-customers-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-customers-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
 
     {
       "UpstreamPathTemplate": "/gateway/customers/",
       "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/customers/",
+      "ServiceName": "salonmanager-customers-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-customers-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     },
     {
       "UpstreamPathTemplate": "/gateway/customers/increase-visited-times/",
       "UpstreamHttpMethod": [ "PUT" ],
       "DownstreamPathTemplate": "/api/customers/increase-visited-times/",
+      "ServiceName": "salonmanager-customers-svc",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "salonmanager-customers-svc.salonmanager-hom-ns.svc.cluster.local",
-          "Port": 8080
-        }
-      ]
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      }
     }
 
   ]

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salonmanager-auth-db-dp
+  namespace: salonmanager-hom-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salonmanager-auth-db
+  template:
+    metadata:
+      name: salonmanager-auth-db-pod
+      labels:
+        app: salonmanager-auth-db
+    spec:
+      containers:
+      - name: salonmanager-auth-db
+        image: postgres:latest
+        env:
+          - name: POSTGRES_DB
+            value: authdb
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: Senha123!
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5432

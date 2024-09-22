@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salonmanager-business-dp
+  namespace: salonmanager-hom-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: salonmanager-business
+  template:
+    metadata:
+      name: salonmanager-business-pod
+      labels:
+        app: salonmanager-business
+    spec:
+      containers:
+      - name: salonmanager-business
+        image: gsgomes/salonmanager-business:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        env:
+          - name: ConnectionStrings__DefaultConnection
+            value: "Host=salonmanager-business-db-svc.salonmanager-hom-ns.svc.cluster.local;Port=5432;Database=businessdb;Username=postgres;Password=Senha123!"

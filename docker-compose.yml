@@ -1,4 +1,4 @@
-version: latest
+version: '3.9'
 
 services:
   salonmanager-auth:
@@ -62,9 +62,7 @@ services:
       - salonmanager-customers-db
 
   salonmanager-gateway:
-    build:
-      context: ./SalonManager.Gateway
-      dockerfile: Dockerfile
+    image: gsgomes/salonmanager-gateway:v1
     container_name: salonmanager-gateway-ctn
     ports:
       - "7001:8080"
@@ -81,9 +79,11 @@ services:
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+
   salonmanager-auth-db:
     image: postgres:latest
     container_name: salonmanager-auth-db
+    hostname: salonmanager-auth-db
     environment:
       - POSTGRES_DB=authdb
       - POSTGRES_USER=postgres
@@ -94,6 +94,7 @@ services:
   salonmanager-appointments-db:
     image: postgres:latest
     container_name: salonmanager-appointments-db
+    hostname: salonmanager-appointments-db
     environment:
       - POSTGRES_DB=appointmentsdb
       - POSTGRES_USER=postgres
@@ -104,6 +105,7 @@ services:
   salonmanager-business-db:
     image: postgres:latest
     container_name: salonmanager-business-db
+    hostname: salonmanager-business-db
     environment:
       - POSTGRES_DB=businessdb
       - POSTGRES_USER=postgres
@@ -114,6 +116,7 @@ services:
   salonmanager-customers-db:
     image: postgres:latest
     container_name: salonmanager-customers-db
+    hostname: salonmanager-customers-db
     environment:
       - POSTGRES_DB=customersdb
       - POSTGRES_USER=postgres

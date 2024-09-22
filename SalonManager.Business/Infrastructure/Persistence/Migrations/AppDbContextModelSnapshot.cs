@@ -82,6 +82,10 @@ namespace SalonManager.Business.Infrastructure.Persistence.Migrations
                         .HasColumnType("timestamp")
                         .HasColumnName("CreatedAt");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("varchar(80)");
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -90,10 +94,6 @@ namespace SalonManager.Business.Infrastructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Nickname")
                         .IsRequired()

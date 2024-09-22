@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salonmanager-gateway-dp
+  namespace: salonmanager-hom-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salonmanager-gateway
+  template:
+    metadata:
+      name: salonmanager-gateway-pod
+      labels:
+        app: salonmanager-gateway
+    spec:
+      containers:
+      - name: salonmanager-gateway
+        image: gsgomes/salonmanager-gateway:v3
+        resources:
+          limits:
+            memory: "228Mi"
+            cpu: "600m"
+        ports:
+        - containerPort: 8080

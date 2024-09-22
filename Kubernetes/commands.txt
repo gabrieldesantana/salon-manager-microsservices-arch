@@ -1,0 +1,13 @@
+PS C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS> cd .\Kubernetes\
+PS C:\Users\Gabriel Gomes\source\repos\SalonManager_MS\SalonManagerMS\Kubernetes> kubectl apply -f .\namespaces
+->namespace/salonmanager-hom-ns created
+->namespace/salonmanager-prod-ns created
+
+
+kubectl delete deployments --all --namespace salonmanager-hom-ns
+
+kubectl get deployments --namespace salonmanager-hom-ns
+
+
+storage-api-svc.storage-ns.svc.cluster.local
+salonmanager-auth-db-svc.salonmanager-hom-ns.cluster.local:5432
