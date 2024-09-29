@@ -11,3 +11,20 @@ kubectl get deployments --namespace salonmanager-hom-ns
 
 storage-api-svc.storage-ns.svc.cluster.local
 salonmanager-auth-db-svc.salonmanager-hom-ns.cluster.local:5432
+
+
+
+kubectl delete secret ocelot-service-account-secret -n salonmanager-hom-ns
+--
+kubectl create secret generic ocelot-service-account-secret --from-literal=token=MEU_TOKEN_MANUAL -n salonmanager-hom-ns
+
+kubectl apply -f .\services_accounts\
+
+kubectl apply -f .\services\
+
+
+kubectl create secret generic ocelot-service-account-secret --from-literal=token=MEU_TOKEN_MANUAL -n salonmanager-hom-ns
+
+
+kubectl delete secret ocelot-service-account-secret -n salonmanager-hom-ns
+kubectl delete serviceaccount ocelot-service-account -n salonmanager-hom-ns

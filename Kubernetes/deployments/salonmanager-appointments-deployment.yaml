@@ -26,3 +26,5 @@ spec:
         env:
           - name: ConnectionStrings__DefaultConnection
             value: "Host=salonmanager-appointments-db-svc.salonmanager-hom-ns.svc.cluster.local;Port=5432;Database=appointmentsdb;Username=postgres;Password=Senha123!"
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Development"
