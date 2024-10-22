@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: salonmanager-auth-db
-        image: postgres:latest
+        image: postgres:17-alpine
         env:
           - name: POSTGRES_DB
             value: authdb
